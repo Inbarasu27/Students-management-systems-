@@ -1,4 +1,3 @@
-
 #include <string.h>
 #include "student.h"
 
@@ -14,7 +13,7 @@ void sort(ST *ptr)
     printf("\n2 : Sort by Name");
     printf("\n3 : Sort by Percentage");
     printf("\nEnter Your Choice : ");
-    scanf(" %d", &ch);
+    scanf("%d", &ch);
 
     switch(ch)
     {
@@ -37,93 +36,96 @@ void sort(ST *ptr)
 
 void sort_roll(ST *ptr)
 {
-    ST *p1, *p2;
-    int t_roll;
-    float t_per;
-    char t_name[20];
+    ST *arr[100], *temp;
+    int i, j, n = 0;
 
-    for(p1 = ptr; p1; p1 = p1->next)
+    while(ptr != NULL && n < 100)
     {
-        for(p2 = p1->next; p2; p2 = p2->next)
+        arr[n++] = ptr;
+        ptr = ptr->next;
+    }
+
+    for(i = 0; i < n-1; i++)
+    {
+        for(j = i+1; j < n; j++)
         {
-            if(p1->roll > p2->roll)
+            if(arr[i]->roll > arr[j]->roll)
             {
-                t_roll = p1->roll;
-                p1->roll = p2->roll;
-                p2->roll = t_roll;
-
-                strcpy(t_name, p1->name);
-                strcpy(p1->name, p2->name);
-                strcpy(p2->name, t_name);
-
-                t_per = p1->per;
-                p1->per = p2->per;
-                p2->per = t_per;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
     }
 
     printf("\nSorted by Roll Number\n");
+    printf("\nRoll\tName\tPercentage\n");
+
+    for(i = 0; i < n; i++)
+        printf("%d\t%s\t%.2f\n",
+               arr[i]->roll, arr[i]->name, arr[i]->per);
 }
 
 void sort_name(ST *ptr)
 {
-    ST *p1, *p2;
-    int t_roll;
-    float t_per;
-    char t_name[20];
+    ST *arr[100], *temp;
+    int i, j, n = 0;
 
-    for(p1 = ptr; p1; p1 = p1->next)
+    while(ptr != NULL && n < 100)
     {
-        for(p2 = p1->next; p2; p2 = p2->next)
+        arr[n++] = ptr;
+        ptr = ptr->next;
+    }
+
+    for(i = 0; i < n-1; i++)
+    {
+        for(j = i+1; j < n; j++)
         {
-            if(strcmp(p1->name, p2->name) > 0)
+            if(strcmp(arr[i]->name, arr[j]->name) > 0)
             {
-                t_roll = p1->roll;
-                p1->roll = p2->roll;
-                p2->roll = t_roll;
-
-                strcpy(t_name, p1->name);
-                strcpy(p1->name, p2->name);
-                strcpy(p2->name, t_name);
-
-                t_per = p1->per;
-                p1->per = p2->per;
-                p2->per = t_per;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
     }
 
     printf("\nSorted by Name\n");
+    printf("\nRoll\tName\tPercentage\n");
+
+    for(i = 0; i < n; i++)
+        printf("%d\t%s\t%.2f\n",
+               arr[i]->roll, arr[i]->name, arr[i]->per);
 }
 
 void sort_percentage(ST *ptr)
 {
-    ST *p1, *p2;
-    int t_roll;
-    float t_per;
-    char t_name[20];
+    ST *arr[100], *temp;
+    int i, j, n = 0;
 
-    for(p1 = ptr; p1; p1 = p1->next)
+    while(ptr != NULL && n < 100)
     {
-        for(p2 = p1->next; p2; p2 = p2->next)
+        arr[n++] = ptr;
+        ptr = ptr->next;
+    }
+
+    for(i = 0; i < n-1; i++)
+    {
+        for(j = i+1; j < n; j++)
         {
-            if(p1->per < p2->per)   // Descending order
+            if(arr[i]->per < arr[j]->per)
             {
-                t_roll = p1->roll;
-                p1->roll = p2->roll;
-                p2->roll = t_roll;
-
-                strcpy(t_name, p1->name);
-                strcpy(p1->name, p2->name);
-                strcpy(p2->name, t_name);
-
-                t_per = p1->per;
-                p1->per = p2->per;
-                p2->per = t_per;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
     }
 
     printf("\nSorted by Percentage\n");
+    printf("\nRoll\tName\tPercentage\n");
+
+    for(i = 0; i < n; i++)
+        printf("%d\t%s\t%.2f\n",
+               arr[i]->roll, arr[i]->name, arr[i]->per);
 }

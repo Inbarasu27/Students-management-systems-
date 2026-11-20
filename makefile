@@ -12,7 +12,7 @@ mod.o:mod.c
 	cc -c mod.c
 save.o:save.c
 	cc -c save.c
-save.o:show.c
+show.o:show.c
 	cc -c show.c
 sort.o:sort.c
 	cc -c sort.c

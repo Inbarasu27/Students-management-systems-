@@ -1,10 +1,22 @@
 #include "student.h"
+static int roll;
+void set_roll(ST *p){
+	int max=0;
+	while(p!=NULL){
+		if(p->roll>max)
+			max=p->roll;
+		p=p->next;
+	}
+	roll=max+1;
+}
 
 void add(ST **ptr)
 {
+	int op;
+	do{
     ST *temp, *p;
     ST **last;
-    int roll = 1;
+    set_roll(*ptr);
 
     temp = (ST *)malloc(sizeof(ST));
 
@@ -40,4 +52,10 @@ void add(ST **ptr)
     while(*last!=NULL)
 	    last=&(*last)->next;
     *last=temp;
+    printf("\n----------------------------------\n");
+    printf("\t1 . Add student\n\t2 . HOME");
+    printf("\n----------------------------------\n");
+   printf("Enter Your Choice: ");
+   scanf("%d",&op);
+	}while(op==1); 
 }
